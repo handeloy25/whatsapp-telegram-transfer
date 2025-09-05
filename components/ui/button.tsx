@@ -11,29 +11,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className = "", variant = "default", size = "default", asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     
-    const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    let classes = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 "
     
-    const variantClasses = {
-      default: "bg-primary text-primary-foreground hover:bg-primary/90",
-      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-      outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-      ghost: "hover:bg-accent hover:text-accent-foreground",
-      link: "text-primary underline-offset-4 hover:underline",
-    }
+    // Add variant classes
+    if (variant === "default") classes += "bg-blue-600 text-white hover:bg-blue-700 "
+    if (variant === "destructive") classes += "bg-red-600 text-white hover:bg-red-700 "
+    if (variant === "outline") classes += "border border-gray-300 bg-white hover:bg-gray-50 "
+    if (variant === "secondary") classes += "bg-gray-100 text-gray-900 hover:bg-gray-200 "
+    if (variant === "ghost") classes += "hover:bg-gray-100 "
+    if (variant === "link") classes += "text-blue-600 underline-offset-4 hover:underline "
     
-    const sizeClasses = {
-      default: "h-10 px-4 py-2",
-      sm: "h-9 rounded-md px-3",
-      lg: "h-11 rounded-md px-8",
-      icon: "h-10 w-10",
-    }
+    // Add size classes
+    if (size === "default") classes += "h-10 px-4 py-2 "
+    if (size === "sm") classes += "h-9 px-3 "
+    if (size === "lg") classes += "h-11 px-8 "
+    if (size === "icon") classes += "h-10 w-10 "
     
-    const finalClassName = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
+    classes += className
     
     return (
       <Comp
-        className={finalClassName}
+        className={classes}
         ref={ref}
         {...props}
       />
