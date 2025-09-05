@@ -107,10 +107,11 @@ export default function Home() {
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to update configuration.",
-        variant: "destructive",
-      });
+  id: "config-error",
+  title: "Error",
+  description: "Failed to update configuration.",
+  variant: "destructive",
+});
       addLog('Failed to update configuration', 'error', 'System', 'System');
     } finally {
       setIsLoading(false);
