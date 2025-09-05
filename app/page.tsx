@@ -98,10 +98,11 @@ export default function Home() {
 
       const data = await response.json();
       if (data.status === 'success') {
-        toast({
-          title: "Configuration Updated",
-          description: "Your settings have been saved successfully.",
-        });
+       toast({
+  id: "config-updated",
+  title: "Configuration Updated",
+  description: "Your settings have been saved successfully.",
+});
         addLog('Configuration updated', 'success', 'System', 'System');
       }
     } catch (error) {
